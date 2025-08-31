@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    //Lazy load del modulo pages
+    path: '',
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+  },
+    {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
